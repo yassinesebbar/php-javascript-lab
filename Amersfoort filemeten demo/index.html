@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+<!--    Css files van leaflet, leaflet routing machine en bootstrap-->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="dashboard.css" />
+    <!--alle js files die we nodig hebben-->
+    <script src="jquery-3.2.0.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js" defer></script>
+
+    <!--verwijzing naar onze html en javascript files met de link in het dashboard-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="dashboard.js" defer></script>
+
+
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    var jQueryslider = $.noConflict(true);
+
+
+  jQueryslider(function() {
+    jQueryslider('#slider-time').slider({
+        range: true,
+        min: 0,
+        max: 1440,
+        step: 60,
+        values: [ 600, 1200 ],
+        slide: function( event, ui ) {
+            var hours1 = Math.floor(ui.values[0] / 60);
+            var minutes1 = ui.values[0] - (hours1 * 60);
+
+            if(hours1.length < 10) hours1= '0' + hours;
+            if(minutes1.length < 10) minutes1 = '0' + minutes;
+
+            if(minutes1 == 0) minutes1 = '00';
+
+            var hours2 = Math.floor(ui.values[1] / 60);
+            var minutes2 = ui.values[1] - (hours2 * 60);
+
+            if(hours2.length < 10) hours2= '0' + hours;
+            if(minutes2.length < 10) minutes2 = '0' + minutes;
+
+            if(minutes2 == 0) minutes2 = '00';
+
+if(hours1 < 10){
+    hours1 = "0"+hours1;
+}
+if(hours2 < 10){
+    hours2 = "0"+hours2;
+}
+            $('.beginuren').html(hours1);
+            $('.einduren').html(hours2);
+            $('.begintijd').html(hours1+':'+minutes1);
+            $('.eindtijd').html(hours2+':'+minutes2);
+                       $('#amount-time').val(hours1+':'+minutes1+' - '+hours2+':'+minutes2 );
+        }
+    });
+});
+
+  </script>
+
+
+</head>
+<body>
+<div class="welkom">
+  <div class="welkomText">
+    <div class="welkomTextDiv">
+    <h1>Welkom</h1>
+    <p>Studenten van het ICT- lab Utrecht hebben in opdracht van Civity deze applicatie ontwikkeld,<br>
+       die verkeersstromen naar de binnenstad van Amersfoort in kaart brengt.</p>
+       <button class="welkomKnop button" type="button" name="button">Aan de slag!</button>
+       </div>
+  </div>
+</div>
+<!--de kaart div met de benodigde js files-->
+    <div class="wrapper">
+        <div class="map" id="map"></div>
+            <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+            <script src="leaflet-routing-machine.js"></script>
+        <div class="dashboard">
+            <div class="knoppen">
+            <form>
+                Datum:
+                <input type="date" class="datum" min="2016-03-01" max="2016-03-27" value="2016-03-01">
+            </form>
+                <label for="amount-time">Tijd</label>
+<input type="text" name="amount-time" id="amount-time" style="border: 0; color: #666666; font-weight: bold;" value="10:00 - 20:00" readonly/>
+<div id="slider-time"></div><br>
+                <button class="garage button">Garages</button>
+                <button class="info button">IN</button>
+                <button class="text button">Totaal</button>
+
+                        <p id="demo"></p>
+                        <p id="demo2"></p>
+                        <p id="demo3"></p>
+                        <p id="demo4"></p>
+                        <p id="demo5"></p>
+                        <p id="demo6"></p>
+                        <p id="demo7"></p>
+                        <p id="demo8"></p>
+
+            </div>
+        </div>
+    </div>
+  <div style="display:none">
+      <!--standaard waarde van de slider-->
+        <p class="begintijd">10:00</p>
+        <p class="eindtijd">20:00</p>
+        <p class="beginuren">10</p>
+        <p class="einduren">20</p>
+    </div>
+</body>
+</html>

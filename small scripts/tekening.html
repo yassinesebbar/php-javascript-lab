@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .dot{
+                height:20px;
+                width:20px;
+                background-color:white;
+                border-radius: 3px;
+            }
+
+            button {z-index:2 }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type='button' onclick="" id='black' value="black">
+            <input type='button' onclick="" id='red' value="red">
+            <input type='button' onclick="" id='blue' value="blue">
+            <input type='button' onclick="" id='green' value="green">
+            <input type='button' onclick="" id='yellow' value="yellow">
+            <input type='button' onclick="" id='gray' value="gray">
+        </div>
+      <script>
+            var x;
+            var y;
+            var check = true;
+            var color = 'white';
+            document.getElementById("black").addEventListener("click", function(){
+                color='black';
+            });
+            document.getElementById("red").addEventListener("click", function(){
+                color='red';
+            });
+            document.getElementById("blue").addEventListener("click", function(){
+                color='blue';
+            });
+            document.getElementById("green").addEventListener("click", function(){
+                color='green';
+            });
+            document.getElementById("yellow").addEventListener("click", function(){
+                color='yellow';
+            });
+            document.getElementById("gray").addEventListener("click", function(){
+                color='gray';
+            });
+              
+              
+            function getlocation(){
+                x = event.clientX;
+                y = event.clientY; 
+                x = (x-12)
+                y = (y-10)
+   
+                var iDiv = document.createElement('div');
+                iDiv.id = 'block';
+                iDiv.className += "dot"
+                iDiv.style.position = "absolute";
+                iDiv.style.top = y+"px";
+                iDiv.style.left = x+"px";
+                iDiv.style.backgroundColor = color;
+                iDiv.style.zIndex = "-1";
+                document.getElementsByTagName('body')[0].appendChild(iDiv);   
+            }
+            document.addEventListener("mousemove", getlocation);
+            
+        </script>
+    </body>
+</html>

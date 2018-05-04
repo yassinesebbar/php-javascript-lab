@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #dot{
+                border:1px solid black;
+                height:30px;
+                width:30px;
+                border-radius:30px; 
+                background-color:blue;
+            }
+        </style>
+
+            
+    </head>
+    <body id='this'>
+        <div id="dot"></div>
+        <p id='P'></p>
+        
+                <script>
+              var x;
+              var y;
+              var check = true;
+              
+            function getlocation(){
+                 x = event.clientX;
+                 y = event.clientY; 
+                if(check === true){   
+                   x = (x-12)
+                   y = (y-10)
+                }else{
+                  x = (x-22)
+                  y = (y-20) 
+                }
+                 var coor = "X coords: " + x + ", Y coords: " + y;
+                 document.getElementById('P').innerHTML=coor;
+                 document.getElementById("dot").style.position = "absolute";
+                 document.getElementById("dot").style.top = y+"px";
+                 document.getElementById("dot").style.left = x+"px";
+            }
+            
+    
+              
+            function changecolor(){
+                if(check === true){
+                    document.getElementById("dot").style.backgroundColor = "red";
+                    document.getElementById("dot").style.width = 50+"px";
+                    document.getElementById("dot").style.height = 50+"px";
+                    check = false;
+                    getlocation();
+                }else{
+                    document.getElementById("dot").style.backgroundColor = "blue";
+                    document.getElementById("dot").style.width = 30+"px";
+                    document.getElementById("dot").style.height = 30+"px";  
+                    check = true;
+                    getlocation();
+                }
+            }
+            document.addEventListener("mousemove", getlocation);
+            document.addEventListener("click", changecolor);
+
+            
+        </script>
+    </body>
+</html>

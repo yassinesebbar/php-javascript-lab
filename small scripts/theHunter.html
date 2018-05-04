@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #dot{
+            border:1px solid black;
+            height:30px;
+            width:30px;
+            border-radius:30px; 
+            background-color:blue;
+        }
+    </style>
+</head>
+<body id='this'>
+    <div id="dot"></div>
+    <p id='P'></p>
+        
+    <script>
+          var x;
+          var y;
+          var check = true;
+          var xx = [];
+          var yy = [];
+          var i = 0;
+
+        function getlocation(){
+            x = (event.clientX - 12);
+            y = (event.clientY - 10); 
+            xx.push(x);
+            yy.push(y);
+        }
+        function ani(){
+            setTimeout(function() { 
+                document.getElementById("dot").style.position = "absolute";
+                document.getElementById("dot").style.top = yy[i]+"px";
+                document.getElementById("dot").style.left = xx[i]+"px";
+                i++;
+                if(i < xx.length){
+                   ani(); 
+                }
+                if(i === xx.length){
+                    xx = [];
+                    yy = [];
+                    check = true;
+                    i = 0;
+                }
+            }, 40);
+        }
+        function play(){
+            if(check === true){
+               check = false; 
+               xx = [];
+               yy = [];
+            }else{
+                ani();
+            }
+        }
+        document.addEventListener("mousemove", getlocation);
+        document.addEventListener("click", play);
+    </script>
+</body>
+</html>
